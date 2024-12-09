@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Shop - Agendamento de Serviço</title>
+</head>
+<body>
+    <header>
+        <h1>Agendamento de Serviço</h1>
+    </header>
+
+    <main>
+        <section>
+            <h2>Agende um Serviço</h2>
+            <form id="AgendamentoForm">
+                <div>
+                    <label for="namePet">Nome do Pet</label>
+                    <input type="text" id="namePet" placeholder="Digite o nome do Pet" required>
+                </div>
+                <div>
+                    <label for="nameDono">Nome do Dono</label>
+                    <input type="text" id="nameDono" placeholder="Digite o nome do Dono" required>
+                </div>
+                <div>
+                    <label for="typeService">Tipo de serviço</label>
+                    <select id="typeService" required>
+                        <option value="" disabled selected>Selecione o tipo de serviço</option>
+                        <option value="banho">Banho e Tosa</option>
+                        <option value="hospedagem">Hospedagem</option>
+                        <option value="consulta">Consulta</option>
+                </div>
+                <div>
+                    <label for="appointmentDate">Data de agendamento</label>
+                    <input type="date" id="appointmentDate" placeholder="Escolha a data do seu agendamento" required>
+                </div>
+                <div>
+                    <label for="appointmentTime"></label>
+                    <input type="time" id="appointmentTime" required>
+                </div>
+                <button type="submmit">Agendar Serviço</button>
+            </form>
+        </section>
+        
+    <footer>
+        <p>&copy; 2024 Carinhos e Patas - Todos os direitos reservados.</p>
+    </footer>
+    </main>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const AgendamentoForm = document.getElementById("AgendamentoForm");
+    
+            AgendamentoForm.addEventListener("submit", async (event) => {
+                event.preventDefault();
+    
+                const namePet = document.getElementById("namePet").value;
+                const nameDono = document.getElementById("nameDono").value;
+                const typeService = document.querySelector("#typeService").value;
+                const appointmentDate = document.querySelector("#appointmentDate").value;
+                const appointmentTime = document.querySelector("#appointmentTime").value;
+
+
+                try {
+                    const response = await fetch("http://localhost:8080/api/login&quot", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({ priceService, describeService, nameService })
+                    });
+    
+                    if (response.ok) {
+                        alert("Login bem-sucedido!");
+                        window.location.href = "./index";
+                    } else {
+                        alert("E-mail ou senha incorretos. Tente novamente.");
+                    }
+                    }
+                    catch (error) {
+            console.error("Erro ao conectar ao servidor:", error);
+            alert("Erro ao conectar ao servidor. Tente novamente mais tarde.");
+        }
+    });
+    });
+    
+    </script>
+</body>
+</html>
